@@ -35,7 +35,28 @@ RUN apt-get update \
 
 WORKDIR /usr/tsunami
 
+RUN mkdir /usr/tsunami/logs
+
 COPY --from=0 /usr/tsunami /usr/tsunami
 
-ENTRYPOINT ["java", "-cp", "tsunami.jar:plugins/*", "-Dtsunami-config.location=tsunami.yaml", "com.google.tsunami.main.cli.TsunamiCli"]
-CMD ["--ip-v4-target=127.0.0.1", "--scan-results-local-output-format=JSON", "--scan-results-local-output-filename=logs/tsunami-output.json"]
+ENV target_ip 127.0.0.1
+
+
+RUN apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev wget
+
+RUN wget https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz \
+    && tar xzf Python-3.9.9.tgz \
+    && cd Python-3.9.9 \
+    && ./configure --enable-optimizations \
+    && make -j 8 
+RUN cd Python-3.9.9 \
+    && make altinstall
+
+RUN apt-get install -y python-pip
+
+RUN pip install redis
+COPY redis/worker.py /worker.py
+COPY redis/rediswq.py /rediswq.py
+
+CMD  python /worker.py
+
