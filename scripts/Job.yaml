@@ -1,0 +1,31 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tsunami-server-scan
+spec:
+  parallelism: 10
+  template:
+    metadata:
+      name: tsunami-server-scan
+    spec:
+      shareProcessNamespace: true
+      containers:
+      - name: scan
+        image: karenjoseph89/redis-tsunami-server-scan-wq:1.1.1
+        imagePullPolicy: Always
+        env:
+        - name: REDIS_SERVICE_HOST
+          value: redis-leader
+        - name: ES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: es-cred
+              key: host 
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: es-cred
+              key: password
+      restartPolicy: OnFailure
+
