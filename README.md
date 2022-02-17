@@ -52,6 +52,9 @@ Run Tsunami Network Scans on your servers and Get Notified on Critical findings
     You can also provide a file instead of a servers list
 
 ## Solution Description
+
+![alt text](https://github.com/KarenJoseph/tsunami-security-scanner/blob/master/pics/diamgram.PNG?raw=true)
+
 List of servers to scan is entered into a redis FIFO queue.
 
 A k8s job is then run with number of parallel scans to be performed at once.
