@@ -55,6 +55,8 @@ Run Tsunami Network Scans on your servers and Get Notified on Critical findings
 
      You can also provide a file instead of a servers list
 
+ 2. NOTICE - You can run this priodically if you want to continually scan your servers (make sure the ips list is updated as well). This can be done as a cron/job/other, or run on demand
+
 ## Solution Description
 
 ![alt text](https://github.com/KarenJoseph/tsunami-security-scanner/blob/master/pics/diamgram.PNG?raw=true)
@@ -71,4 +73,4 @@ The json can be sent to logstash to prase, but I found it simpler to remove thos
 
 That cleaned json is sent to ES.
 
-The rules you defined in Kibana will run as defined to send Alerts. 
+The rules you defined in Kibana will run as defined to send Alerts.
