@@ -47,9 +47,13 @@ Run Tsunami Network Scans on your servers and Get Notified on Critical findings
 
      ```
      cd scripts
+     #### Please read the help to understand the meaning of each flag ###
+     bash  TsunamiScanTheseServers.sh -h
+     ####
      bash  TsunamiScanTheseServers.sh -l "172.31.10.93 172.31.21.64 172.31.27.76 172.31.38.67" -n 1 -e https://gloat.es.eu-west-1.aws.found.io:9243 -p <password not conatining ~>
      ```
-    You can also provide a file instead of a servers list
+
+     You can also provide a file instead of a servers list
 
 ## Solution Description
 
