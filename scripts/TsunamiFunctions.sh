@@ -1,6 +1,5 @@
 #! /bin/sh
 
-# if redis isn't configured, default is k8s deployed redis, and is installed if doesn't exist
 install_redis_queue() {
     # Redis installation based on: https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
     # And this guide: https://kubernetes.io/docs/tasks/job/fine-parallel-processing-work-queue/

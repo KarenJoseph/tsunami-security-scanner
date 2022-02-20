@@ -32,8 +32,8 @@ done
 
 source TsunamiFunctions.sh
 
-# if redis isn't configured, default is k8s deployed redis, and is installed if doesn't exist
-#install_redis_queue
+# installs redis on k8s
+install_redis_queue
 
 # here i'm populating the k8s deployed queue - if you are using your own - you need to populate your redis
 populate_queue
